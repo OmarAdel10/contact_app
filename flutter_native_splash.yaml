@@ -1,0 +1,13 @@
+flutter_native_splash:
+  color: "#29384D"
+  image: assets/images/splash_logo.png
+  #branding: assets/dart.png
+  #branding_bottom_padding: 24
+
+  android_12:
+    # App icon with an icon background: This should be 960×960 pixels, and fit within a circle
+    # 640 pixels in diameter.
+    image: assets/images/android12splash.png
+    color: "#29384D"
+    #icon_background_color: "#111111"
+    #branding: assets/dart.png
