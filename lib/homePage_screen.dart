@@ -16,8 +16,18 @@ class _HomePageScreenState extends State<HomePageScreen> {
         backgroundColor: Color(0xFF29384D),
       ),
       body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 18),
         decoration: BoxDecoration(
           color: Color(0xFF29384D),
+        ),
+        child: SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('assets/images/homepage_middle_image.png'),
+              Text('There is No Contacts Added Here',style: TextStyle(color: Color(0xFFFFF1D4), fontSize: 20, fontWeight: FontWeight.w500),),
+            ],
+          ),
         ),
       ),
     );
