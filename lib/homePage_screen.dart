@@ -28,7 +28,7 @@ class _HomePageScreenState extends State<HomePageScreen>{
             children: [
               Center(
                 child: Lottie.asset(
-                  'assets/lottie/Animation.json',
+                  'assets/lottie/List_Animation.json',
                   repeat: false,
                 ),
               ),
