@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class HomePageScreen extends StatefulWidget {
   static const String routeName = '/home';
+
+  const HomePageScreen({super.key});
   @override
   State<HomePageScreen> createState() => _HomePageScreenState();
 }
 
-class _HomePageScreenState extends State<HomePageScreen> {
+class _HomePageScreenState extends State<HomePageScreen>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +26,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/images/homepage_middle_image.png'),
+              Center(
+                child: Lottie.asset(
+                  'assets/lottie/Animation.json',
+                  repeat: false,
+                ),
+              ),
               Text(
                 'There is No Contacts Added Here',
                 style: TextStyle(
@@ -46,9 +54,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
       ),
     );
   }
-  
+
   void _bottomSheet(BuildContext context) {
     showModalBottomSheet(context: context, builder: (_) => Container());
   }
-
 }
