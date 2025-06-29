@@ -44,25 +44,37 @@ class _HomePageScreenState extends State<HomePageScreen> {
         padding: EdgeInsets.symmetric(horizontal: 18),
         decoration: BoxDecoration(color: Color(0xFF29384D)),
         child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(
-                child: Lottie.asset(
-                  'assets/lottie/List_Animation.json',
-                  repeat: false,
+          child: contact.isEmpty
+              ? Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                      child: Lottie.asset(
+                        'assets/lottie/List_Animation.json',
+                        repeat: false,
+                      ),
+                    ),
+                    Text(
+                      'There is No Contacts Added Here',
+                      style: TextStyle(
+                        color: Color(0xFFFFF1D4),
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                )
+              : GridView.builder(
+                  padding: EdgeInsets.only(top: 24, bottom: 80),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                    childAspectRatio: 0.78,
+                  ),
+                  itemCount: contact.length,
+                  itemBuilder: (context, index) => contact[index],
                 ),
-              ),
-              Text(
-                'There is No Contacts Added Here',
-                style: TextStyle(
-                  color: Color(0xFFFFF1D4),
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
-          ),
         ),
       ),
       floatingActionButton: Stack(
