@@ -308,8 +308,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                 return 'You Must Enter An Email';
                               }
 
-                              if (value.length < 6 || value.length > 20) {
-                                return 'Email Must Be 6 ~ 20 Characters';
+                              if (value.length < 6 || value.length > 25) {
+                                return 'Email Must Be 6 ~ 25 Characters';
                               }
 
                               return null;
