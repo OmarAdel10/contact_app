@@ -1,9 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:image_picker/image_picker.dart';
-// import 'package:lottie/lottie.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:lottie/lottie.dart';
 
 class HomePageScreen extends StatefulWidget {
   static const String routeName = '/home';
@@ -14,21 +13,21 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
-  // File? _image;
+  File? _image;
 
   String userName = 'User Name';
   String email = 'example@email.com';
   String phoneNumber = '+200000000000';
 
-  // final _picker = ImagePicker();
-  // void pickImage() async {
-    // final pickedImage = await _picker.pickImage(source: ImageSource.gallery);
+  final _picker = ImagePicker();
+  void pickImage() async {
+    final pickedImage = await _picker.pickImage(source: ImageSource.gallery);
 
-    // if (pickedImage != null) {
-      // _image = File(pickedImage.path);
-      // setState(() {});
-    // }
-  // }
+    if (pickedImage != null) {
+      _image = File(pickedImage.path);
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,10 +45,10 @@ class _HomePageScreenState extends State<HomePageScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
-                // child: Lottie.asset(
-                  // 'assets/lottie/List_Animation.json',
-                  // repeat: false,
-                // ),
+                child: Lottie.asset(
+                  'assets/lottie/List_Animation.json',
+                  repeat: false,
+                ),
               ),
               Text(
                 'There is No Contacts Added Here',
@@ -104,7 +103,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             GestureDetector(
                               onTap: () {
                                 setState(() {
-                                  // pickImage();
+                                  pickImage();
                                 });
                               },
                               child: Container(
@@ -125,16 +124,16 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(28),
                                   ),
-                                  // child:
-                                  //     _image == null
-                                  //         ? Lottie.asset(
-                                  //           'assets/lottie/imagePicker_Animation.json',
-                                  //           repeat: false,
-                                  //         )
-                                  //         : Image.file(
-                                  //           _image!,
-                                  //           fit: BoxFit.cover,
-                                  //         ),
+                                  child:
+                                      _image == null
+                                          ? Lottie.asset(
+                                            'assets/lottie/imagePicker_Animation.json',
+                                            repeat: false,
+                                          )
+                                          : Image.file(
+                                            _image!,
+                                            fit: BoxFit.cover,
+                                          ),
                                 ),
                               ),
                             ),
