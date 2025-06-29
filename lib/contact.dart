@@ -26,7 +26,6 @@ class Contact extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          // Image and name overlay
           Stack(
             children: [
               ClipRRect(
@@ -66,7 +65,6 @@ class Contact extends StatelessWidget {
               ),
             ],
           ),
-          // Details and delete button
           Container(
             width: double.infinity,
             padding: EdgeInsets.all(12),
@@ -120,7 +118,6 @@ class Contact extends StatelessWidget {
                       elevation: 0,
                     ),
                     onPressed: () {
-                      // Handle delete
                     },
                     icon: Icon(CupertinoIcons.delete_solid, color: Colors.white),
                     label: Text(

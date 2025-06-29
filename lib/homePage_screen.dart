@@ -339,7 +339,24 @@ class _HomePageScreenState extends State<HomePageScreen> {
                               ),
                             ),
                             onPressed: () {
-                              
+                              if (userName.trim().isNotEmpty &&
+                                  email.trim().isNotEmpty &&
+                                  phoneNumber.trim().isNotEmpty &&
+                                  contact.length < 6) {
+                                setState(() {
+                                  contact.add(Contact(
+                                    userName: userName,
+                                    email: email,
+                                    phoneNumber: phoneNumber,
+                                    image: _image,
+                                  ));
+                                  userName = 'User Name';
+                                  email = 'example@email.com';
+                                  phoneNumber = '+200000000000';
+                                  _image = null;
+                                });
+                                Navigator.pop(context);
+                              }
                             },
                             child: Text(
                               'Enter User',
