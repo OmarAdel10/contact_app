@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:contact_app/contact.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -28,6 +29,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
       setState(() {});
     }
   }
+
+  late List<Contact> contact = [];
 
   @override
   Widget build(BuildContext context) {
@@ -62,13 +65,34 @@ class _HomePageScreenState extends State<HomePageScreen> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _bottomSheet(context);
-        },
-        backgroundColor: Color(0xFFFFF1D4),
-        elevation: 3,
-        child: Icon(CupertinoIcons.add),
+      floatingActionButton: Stack(
+        alignment: Alignment.bottomRight,
+        children: [
+          if (contact.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 70.0),
+              child: FloatingActionButton(
+                heroTag: 'delete',
+                backgroundColor: Color(0xFFFF4D4D),
+                onPressed: () {
+                  setState(() {
+                    contact.removeLast();
+                  });
+                },
+                child: Icon(CupertinoIcons.delete_solid),
+              ),
+            ),
+          if (contact.length < 6)
+            FloatingActionButton(
+              heroTag: 'add',
+              backgroundColor: Color(0xFFFFF1D4),
+              elevation: 3,
+              onPressed: () {
+                _bottomSheet(context);
+              },
+              child: Icon(CupertinoIcons.add),
+            ),
+        ],
       ),
     );
   }
@@ -117,7 +141,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                   ),
                                 ),
                                 child: Container(
-                                  width: MediaQuery.sizeOf(context).width * 0.38,
+                                  width:
+                                      MediaQuery.sizeOf(context).width * 0.38,
                                   height:
                                       MediaQuery.sizeOf(context).width * 0.38,
                                   clipBehavior: Clip.antiAlias,
@@ -301,7 +326,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                 borderRadius: BorderRadius.circular(16),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              
+                            },
                             child: Text(
                               'Enter User',
                               style: TextStyle(
