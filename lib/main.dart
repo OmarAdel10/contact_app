@@ -1,3 +1,4 @@
+import 'package:contact_app/homepage_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,8 +10,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // routes: [],
-      // initialRoute: ,
+      routes: {
+        HomePageScreen.routeName: (_) => HomePageScreen(),
+      },
+      initialRoute: HomePageScreen.routeName,
     );
   }
 }
