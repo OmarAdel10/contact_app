@@ -7,42 +7,48 @@ class Contact extends StatelessWidget {
   final String email;
   final String phoneNumber;
   final File? image;
+  final VoidCallback onDelete;
 
-  const Contact({
+  const Contact({super.key, 
     required this.userName,
     required this.email,
     required this.phoneNumber,
+    required this.onDelete,
     this.image,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(12),
+      // margin: EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Color(0xFF29384D),
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: MainAxisSize.max,
         children: [
           Stack(
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
-                child: image == null
-                    ? Image.asset(
-                        'assets/images/man.png',
-                        height: 120,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      )
-                    : Image.file(
-                        image!,
-                        height: 120,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                      ),
+                child:
+                    image == null
+                        ? Container(
+                          color: Color(0xFF27445D),
+                          child: Image.asset(
+                          'assets/images/man.png',
+                          height: 120,
+                          width: double.infinity,
+                          fit: BoxFit.contain,
+                        ),
+                        )
+                        : Image.file(
+                          image!,
+                          height: 120,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
               ),
               Positioned(
                 left: 12,
@@ -58,7 +64,7 @@ class Contact extends StatelessWidget {
                     style: TextStyle(
                       color: Color(0xFF29384D),
                       fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                      fontSize: 14,
                     ),
                   ),
                 ),
@@ -77,14 +83,19 @@ class Contact extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Icon(CupertinoIcons.mail, color: Color(0xFF29384D), size: 20),
+                    Icon(
+                      CupertinoIcons.mail,
+                      color: Color(0xFF29384D),
+                      size: 20,
+                    ),
                     SizedBox(width: 8),
                     Expanded(
                       child: Text(
                         email,
                         style: TextStyle(
                           color: Color(0xFF29384D),
-                          fontSize: 15,
+                          fontSize: 10,
+                          fontWeight: FontWeight.w500,
                         ),
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -94,13 +105,18 @@ class Contact extends StatelessWidget {
                 SizedBox(height: 6),
                 Row(
                   children: [
-                    Icon(CupertinoIcons.phone, color: Color(0xFF29384D), size: 20),
+                    Icon(
+                      CupertinoIcons.phone,
+                      color: Color(0xFF29384D),
+                      size: 20,
+                    ),
                     SizedBox(width: 8),
                     Text(
                       phoneNumber,
                       style: TextStyle(
                         color: Color(0xFF29384D),
-                        fontSize: 15,
+                        fontSize: 10,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
@@ -117,9 +133,11 @@ class Contact extends StatelessWidget {
                       padding: EdgeInsets.symmetric(vertical: 10),
                       elevation: 0,
                     ),
-                    onPressed: () {
-                    },
-                    icon: Icon(CupertinoIcons.delete_solid, color: Colors.white),
+                    onPressed: onDelete,
+                    icon: Icon(
+                      CupertinoIcons.delete_solid,
+                      color: Colors.white,
+                    ),
                     label: Text(
                       'Delete',
                       style: TextStyle(
