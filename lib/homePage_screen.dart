@@ -97,7 +97,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
         children: [
           if (contact.isNotEmpty)
             Padding(
-              padding: const EdgeInsets.only(bottom: 70.0),
+              padding: contact.length < 6 ? EdgeInsets.only(bottom: 70.0) : EdgeInsets.only(bottom: 0),
               child: FloatingActionButton(
                 heroTag: 'delete',
                 backgroundColor: Color(0xFFFF4D4D),
