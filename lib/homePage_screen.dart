@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 
 class HomePageScreen extends StatefulWidget {
@@ -10,7 +13,19 @@ class HomePageScreen extends StatefulWidget {
   State<HomePageScreen> createState() => _HomePageScreenState();
 }
 
-class _HomePageScreenState extends State<HomePageScreen>{
+class _HomePageScreenState extends State<HomePageScreen> {
+  File? _image;
+
+  final _picker = ImagePicker();
+  void pickImage() async {
+    final pickedImage = await _picker.pickImage(source: ImageSource.gallery);
+
+    if (pickedImage != null) {
+      _image = File(pickedImage.path);
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,6 +71,46 @@ class _HomePageScreenState extends State<HomePageScreen>{
   }
 
   void _bottomSheet(BuildContext context) {
-    showModalBottomSheet(context: context, builder: (_) => Container());
+    showModalBottomSheet(
+      backgroundColor: Color(0xFF29384D),
+
+      context: context,
+      builder:
+          (_) => Container(
+            padding: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        pickImage();
+                      },
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width * 0.4,
+                        height: MediaQuery.sizeOf(context).width * 0.4,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(28),
+                          border: Border.all(
+                            color: Color(0xFFFFF1D4),
+                            width: 1,
+                          ),
+                        ),
+                        child:
+                            _image == null
+                                ? Lottie.asset(
+                                  'assets/lottie/imagePicker_Animation.json',
+                                  repeat: false,
+                                )
+                                : Image.file(_image!),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+    );
   }
 }
